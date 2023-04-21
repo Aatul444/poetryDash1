@@ -1,0 +1,77 @@
+ion-content {
+    ion-list {
+        ion-item {
+            ion-label {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+                .msg-title {
+                    margin-left: 8px;
+                    // border-right: dashed;
+                }
+            }
+            msg-subject {
+                flex-grow: 1;
+            }
+            msg-date {
+            }
+        }
+    }
+    .unread {
+        font-weight: bold;
+    }
+}
+ion-modal#rewarded-modal {
+    --width: fit-content;
+    --min-width: 343px;
+    --height: fit-content;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal#rewarded-modal .wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0 20px;
+    .closeBtn {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        ion-text {
+            font-size: 14px;
+        }
+    }
+    // display: flex;
+    // flex-direction: column;
+    .msg-content {
+        padding: 16px;
+        .msg-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .msg-item-name {
+            text-align: center;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 22px;
+            color: #171717;
+        }
+        .msg-item-text {
+            text-align: left;
+        }
+        .msg-item-subject {
+            width: 100%;
+            text-align: left;
+        }
+        .msg-item-message {
+            text-align: left;
+        }
+    }
+}

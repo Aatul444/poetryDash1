@@ -1,17 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Feedbacks
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list lines="full">
+    <ion-item id="{{query.id}}" class="ion-margin-top" [class.unread]="false" *ngFor="let query of queries">
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+      <ion-label>
+        <img src="../../assets/icon/favicon.png">
+        <ion-text class="msg-title">{{query.data.name}}</ion-text>
+      </ion-label>
+
+      <!-- <ion-text class="msg-subject">Regarding all data</ion-text> -->
+      <ion-text class="msg-date">{{query.data.date}}</ion-text>
+
+      <ion-modal id="rewarded-modal" #modal trigger="{{query.id}}">
+        <ng-template>
+          <div class="wrapper">
+            <div class="closeBtn" (click)="modal.dismiss()">X</div>
+            <div class="msg-content">
+              <div class="msg-item">
+                <ion-text class="msg-item-name ion-margin-top">{{query.data.name}}</ion-text>
+                <ion-text class="msg-item-text ion-margin-top"><b>Email:-</b> {{query.data.email}}</ion-text>
+                <!-- <ion-text class="msg-item-subject ion-margin-top"><b>Subject:-</b>{{query.data.name}}</ion-text> -->
+                <ion-text class="msg-item-message ion-margin-top"><b>Message:-</b>{{query.data.message}}</ion-text>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+  </ion-list>
+  <div class="refresh-page" (click)="getQueries()">
+    <img src="../../assets/icon/refresh.png">
+  </div>
 </ion-content>

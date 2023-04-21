@@ -1,17 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Update Web
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="exclusiveDeals">
+    <div class="excDealsTitle">
+      <ion-text class="ion-margin-vertical lftTxt" color="dark">Slider</ion-text>
+      <ion-text class="ion-margin-vertical rgtTxt" color="orange">View All</ion-text>
+    </div>
+    <div class="slider">
+      <div class="card" *ngFor="let slide of sliderImgs">
+        <div class="card-img"><img src="{{slide}}" /></div>
+        <!-- <div class="card-text"><ion-text>{{image}}</ion-text></div> -->
+      </div>
+    </div>
+    <div class="gal-image-gallery__upload gal-edit-icon gal-profile-img">
+      <img src="../../assets/icon/1.png" [style.gal-transform]="'rotate(' + rotationAngle + 'deg)'">
+      <input type="file" id="file-upload" (change)="onSlideSelected($event)" hidden>
+      <label for="file-upload" (click)="rotateImage()">Upload</label>
+    </div>
+  </div>
+  <div class="exclusiveDeals">
+    <div class="excDealsTitle">
+      <ion-text class="ion-margin-vertical lftTxt" color="dark">Gallery</ion-text>
+      <ion-text class="ion-margin-vertical rgtTxt" color="orange">View All</ion-text>
+    </div>
+    <div class="slider">
+      <div class="card" *ngFor="let image of images">
+        <div class="card-img"><img src="{{image}}" /></div>
+        <!-- <div class="card-text"><ion-text>{{image}}</ion-text></div> -->
+      </div>
+    </div>
+    <div class="gal-image-gallery__upload gal-edit-icon gal-profile-img">
+      <img src="../../assets/icon/1.png" [style.gal-transform]="'rotate(' + rotationAngle + 'deg)'">
+      <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden>
+      <label for="file-upload" (click)="rotateImage()">Upload</label>
+    </div>
+  </div>
+  <div class="update-button">
+    <ion-text class="update-head">Update youtube</ion-text>
+    <img src="../../assets/updated.png" (click)="getYoutubeVideos()">
+  </div>
+  <div class="update-button ion-margin-top">
+    <ion-text class="update-head">Update facebook</ion-text>
+    <img src="../../assets/updated.png" (click)="loginWithFacebook()">
+  </div>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <div class="refresh-page" (click)="refresh()">
+    <img src="../../assets/icon/refresh.png">
+  </div>
 </ion-content>

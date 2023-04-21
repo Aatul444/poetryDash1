@@ -1,0 +1,211 @@
+.update-button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  .update-head {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 22px;
+  }
+  img {
+    width: 40px;
+  }
+}
+.exclusiveDeals {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  .slider {
+    height: 170px;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    .card {
+      flex: 0 0 auto;
+      width: 147px;
+      height: 163px;
+      margin-right: 8px;
+
+      .card-img {
+        width: 147px;
+        height: 136px;
+        img {
+          height: 100%;
+          border-radius: 4px 4px 0px 0px;
+        }
+      }
+      .card-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fafafa;
+        height: 30px;
+        border: 1px solid #f6f6f6;
+        border-radius: 4px;
+        ion-text {
+          font-weight: 600;
+          font-size: 14px;
+          color: #171717;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+      }
+    }
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .excDealsTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .lftTxt {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .rgtTxt {
+      font-weight: 600;
+      font-size: 12px;
+      color: #d27254;
+    }
+  }
+  .recomendCards {
+    .card {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      margin-bottom: 10px;
+
+      .cardImg {
+        width: 100%;
+        .crdImg {
+          width: 100%;
+          max-height: 231px;
+        }
+        .cardLogo {
+          position: absolute;
+          width: 50px;
+          height: 50px;
+          left: 16px;
+          bottom: 94px;
+          background: #ffffff;
+          border: 1px solid #f6f6f6;
+          border-radius: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+      .cardfooter {
+        display: flex;
+        flex-direction: column;
+        background: #fafafa;
+        border: 1px solid #f6f6f6;
+        border-radius: 4px;
+        .crdFootTitle {
+          font-weight: 600;
+          font-size: 16px;
+        }
+        .crdFootDesc {
+          margin-top: 4px;
+          font-weight: 400;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+.gal-content {
+  width: 100%;
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .gal-image-gallery {
+    display: flex;
+    padding: 16px;
+    overflow: scroll;
+    justify-content: space-around;
+    &__item {
+      width: 100% !important;
+      height: 100% !important;
+
+      &__img {
+        object-fit: contain !important;
+        width: fit-content !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+
+    &__upload {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 16px;
+
+      input[type="file"] {
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+.gal-edit-icon {
+  display: inline-block;
+  position: relative;
+}
+.gal-edit-icon input[type="file"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.gal-edit-icon label {
+  display: block;
+  min-width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  cursor: pointer;
+}
+.gal-profile-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  ion-text {
+    font-weight: 600;
+    font-size: 12px;
+    color: #d27254;
+    padding: 10.5px;
+  }
+}
+.gal-image-gallery__upload {
+  perspective: 1000px; /* Optional: adds 3D effect to the animation */
+}
+
+.gal-image-gallery__upload img {
+  transition: transform 0.5s ease; /* Smooth transition */
+}
+
+.gal-image-gallery__upload.rotated img {
+  transform: rotateY(360deg); /* Rotate the image 180 degrees */
+}

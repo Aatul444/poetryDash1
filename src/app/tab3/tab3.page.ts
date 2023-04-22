@@ -31,7 +31,6 @@ export class Tab3Page {
           queryary.push(rData);
         });
         this.queries = queryary;
-        console.log(this.queries)
       });
   }
 }

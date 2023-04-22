@@ -7,12 +7,7 @@ import { CommonModule } from '@angular/common';
 import { AppModule } from '../app.module';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import {
-  AngularFireAuth,
-  AngularFireAuthModule,
-} from '@angular/fire/compat/auth';
-import * as firebase from 'firebase/auth';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -24,7 +19,7 @@ import * as firebase from 'firebase/auth';
     CommonModule,
     AppModule,
     HttpClientModule,
-    AngularFireAuthModule,
+    FormsModule,
   ],
 })
 export class Tab1Page {
@@ -34,30 +29,42 @@ export class Tab1Page {
   images: any[] = [];
   rotationAngle = 0;
   sliderImgs: string[] = [];
-
+  instasPosts: any;
+  facebookKey: string = '';
   constructor(
     private db: AngularFirestore,
     private storage: AngularFireStorage,
     private http: HttpClient,
-    public afStore: AngularFirestore,
-    private afAuth: AngularFireAuth
+    public afStore: AngularFirestore
   ) {
     this.fetchAllGalleryImages();
     this.fetchAllSliderImages();
   }
-  async loginWithFacebook() {
-    const provider = new firebase.FacebookAuthProvider();
-    const result: any = await this.afAuth.signInWithPopup(provider);
-
-    if (result.user) {
-      console.log('User:', result.user);
-      const accessToken = result.credential.accessToken;
-      console.log('Access token:', accessToken);
-      // Use the access token to access Facebook posts
-    } else {
-      console.log('Error:', result);
+  getFBposts(key: any) {
+    const fbKey = key.toString();
+    if (fbKey != '') {
+      this.http
+        .get(
+          'https://graph.facebook.com/v16.0/110662868634128?fields=created_time%2Cdescription%2Cid%2Cname%2Cphotos%7Blink%2Cname_tags%2Cimages%2Calt_text%2Calt_text_custom%2Cbackdated_time%2Cbackdated_time_granularity%2Ccreated_time%2Cfrom%2Cheight%2Cicon%2Cid%2Cname%2Cpage_story_id%2Cplace%2Ctarget%2Cupdated_time%2Cwebp_images%2Cwidth%2Ccomments%2Cpicture%2Clikes%7Busername%2Cpicture%2Cname%2Cid%2Cpic%2Cpic_square%7D%7D&access_token=' +
+            fbKey
+        )
+        .subscribe((fbPost: any) => {
+          console.log(fbPost.photos.data);
+          this.instasPosts = fbPost.photos.data;
+          this.afStore
+            .collection('website')
+            .doc('pichhili_Bahar_Facebook')
+            .update({ response: fbPost.photos.data })
+            .then(() => {
+              console.log(this.instasPosts, 'Document updated successfully.');
+            })
+            .catch((error) => {
+              console.log('Error updating document: ', error);
+            });
+        });
     }
   }
+
   fetchAllSliderImages() {
     const storageRef = this.storage.storage.ref().child('slider');
     storageRef
@@ -191,4 +198,27 @@ export class Tab1Page {
         });
     });
   }
+
+  // facebookData() {
+  //   const apiKey = 'AIzaSyAyhP7cM8J8QkxSl3geGaaHMZjQsC1yGfE';
+  //   const channelId = 'UCMgty2VEtNUtgDemXw4WVIQ';
+  //   const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&channelId=${channelId}&part=snippet,id&order=date&maxResults=10`;
+  //   return this.http.get(apiUrl);
+  // }
+
+  // async facebookDatas() {
+  //   await this.facebookData().subscribe((res: any) => {
+  //     console.log(res.items);
+  //     this.afStore
+  //       .collection('website')
+  //       .doc('pichhili_Bahar_Youtube')
+  //       .update({ response: res.items })
+  //       .then(() => {
+  //         console.log('Document updated successfully.');
+  //       })
+  //       .catch((error) => {
+  //         console.log('Error updating document: ', error);
+  //       });
+  //   });
+  // }
 }

@@ -1,0 +1,17 @@
+<div class="exclusiveDeals">
+  <div class="excDealsTitle">
+    <ion-text class="ion-margin-vertical lftTxt" color="dark">Gallery</ion-text>
+    <ion-text class="ion-margin-vertical rgtTxt" color="orange">View All</ion-text>
+  </div>
+  <div class="slider">
+    <div class="card" *ngFor="let image of images">
+      <div class="card-img"><img src="{{image}}" /></div>
+      <!-- <div class="card-text"><ion-text>{{image}}</ion-text></div> -->
+    </div>
+  </div>
+  <div class="gal-image-gallery__upload gal-edit-icon gal-profile-img">
+    <img src="../../assets/icon/1.png" [style.gal-transform]="'rotate(' + rotationAngle + 'deg)'">
+    <input type="file" id="file-upload" (change)="onFileSelected($event)" hidden>
+    <label for="file-upload" (click)="rotateImage()">Upload</label>
+  </div>
+</div>

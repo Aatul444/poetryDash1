@@ -47,9 +47,15 @@
   </div>
   <div class="update-button ion-margin-top">
     <ion-text class="update-head">Update facebook</ion-text>
-    <img src="../../assets/updated.png" (click)="loginWithFacebook()">
+    <img src="../../assets/updated.png" (click)="getFBposts(facebookKey)">
   </div>
-
+  <ion-input placeholder="Enter key" [(ngModel)]="facebookKey"></ion-input>
+  <div class="update-button ion-margin-top extras">
+    <ion-text class="update-head"></ion-text>
+  </div>
+  <div class="update-button ion-margin-top">
+    <ion-text class="update-head"></ion-text>
+  </div>
   <div class="refresh-page" (click)="refresh()">
     <img src="../../assets/icon/refresh.png">
   </div>
